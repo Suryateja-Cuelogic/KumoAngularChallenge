@@ -1,0 +1,24 @@
+<div ng-controller="EmployeeCtrl" class="col-md-10 col-md-offset-1" ng-init="displayEmployeeDetails()">
+    <div>
+        <h2>{{ title }}</h2>
+    </div>
+    <pagination ng-if="employees.length" display-list="$parent.employees" delete-employee="deleteEmployee()"></pagination>
+    <table class="table table-bordered">
+        <tr>
+            <th ng-click="sortName = 'Id';sortOrder = !sortOrder">Id</th>
+            <th ng-click="sortName = 'Name';sortOrder = !sortOrder">Name</th>
+            <th ng-click="sortName = 'Department';sortOrder = !sortOrder">Department</th>
+            <th ng-click="sortName = 'salary';sortOrder = !sortOrder">Salary</th>
+            <th ng-click="sortName = 'experience';sortOrder = !sortOrder">Experience</th>
+            <th>Action</th>
+        </tr>
+        <tr ng-repeat="employee in employees | orderBy : sortName : sortOrder">
+            <td>{{ employee.Id }}</td>
+            <td>{{ employee.Name }}</td>
+            <td>{{ employee.Department }}</td>
+            <td>{{ employee.salary | currency}}</td>
+            <td>{{ employee.experience }}</td>
+            <td><a href="" ng-click="deleteEmployee(employee.Id)" class="btn btn-danger btn-sm">Delete</a></td>
+        </tr>        
+    </table>    
+</div>

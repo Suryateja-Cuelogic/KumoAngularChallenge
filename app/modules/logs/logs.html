@@ -1,0 +1,18 @@
+<div ng-controller="LogCtrl" class="col-md-10 col-md-offset-1" ng-init="displayLogs()">
+    <div>
+    	<h2>{{ title }}</h2>
+    </div>
+    <pagination ng-if="logs.length" display-list="$parent.logs"></pagination>
+    <table class="table table-bordered">
+        <tr>
+            <th ng-click="sortName = 'employeeName';sortOrder = !sortOrder">Employee Name</th>
+            <th ng-click="sortName = 'action';sortOrder = !sortOrder">Action</th>
+            <th ng-click="sortName = 'datetime';sortOrder = !sortOrder">CreatedOn</th>
+        </tr>
+        <tr ng-repeat="log in logs | orderBy : sortName : sortOrder">
+            <td>{{ log.employeeName }}</td>
+            <td>{{ log.action }}</td>
+            <td>{{ log.datetime | date }}</td>
+        </tr>
+    </table>
+</div>

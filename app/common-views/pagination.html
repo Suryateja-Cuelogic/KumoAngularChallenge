@@ -1,0 +1,15 @@
+<nav>
+    <ul class="pagination">
+        <li>
+            <a href="" ng-click="disablePrev || paginateData(currentPage,'prev')" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li ng-repeat="pagination in getNumber(paginationSet) track by $index"><a href="" ng-click="paginateData($index,'current')">{{ $index + 1 }}</a></li>
+        <li>
+            <a href="" ng-click="disableNext || paginateData(currentPage,'next')" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
