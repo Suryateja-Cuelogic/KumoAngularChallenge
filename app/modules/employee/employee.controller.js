@@ -6,16 +6,15 @@ angular.module('employee.controller', [])
 
 function employeeController($scope, employee) {
 
-    $scope.employees = [];
-    $scope.employees1 = [];
+   // $scope.employees = [];
     $scope.title = "Employee Details";
+    $scope.ctrlTest = "Controller Test";
 
     $scope.displayEmployeeDetails = function() {
 
         employee.fetchEmployees()
             .then(function(employee) {
-                $scope.employees = employee.data.employeeData;
-               // $scope.employees1 = employee.data.employeeData;
+                $scope.employees = $scope.employeesMain = employee.data.employeeData;
             })
             .catch(function(error) {
                 console.log(error);
@@ -25,9 +24,10 @@ function employeeController($scope, employee) {
     $scope.deleteEmployee = function(empid) {
 
         if (confirm("Are you sure to delete this employee ?")) {
-            $scope.employees = $scope.employees.filter(function(obj) {
+            $scope.employees = $scope.employeesMain = $scope.employeesMain.filter(function(obj) {
                 return obj.Id !== empid;
             });
+            $scope.employeesMainLength = $scope.employeesMain.length;
         }
     }
 }
